@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DDR</string>
+    <string name="BEGINNER">BEGINNER</string>
+    <string name="BASIC">BASIC</string>
+    <string name="DIFFICULT">DIFFICULT</string>
+    <string name="EXPERT">EXPERT</string>
+    <string name="CHALLENGE">CHALLENGE</string>
+
 </resources>

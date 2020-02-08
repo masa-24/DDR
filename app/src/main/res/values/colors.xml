@@ -6,4 +6,9 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#777777</color>
+    <color name="beginner_blue">#E1FFFF</color>
+    <color name="basic_yellow">#FFFEE1</color>
+    <color name="difficult_red">#FEE4E1</color>
+    <color name="expert_green">#F0FFF0</color>
+    <color name="challenge_purple">#E6E6F9</color>
 </resources>
