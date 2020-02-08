@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">DDR</string>
+    <string name="sort">sort</string>
+    <string name="search">search</string>
+    <string name="select_difficulty">難易度で絞る</string>
+    <string name="select_level">レベルで絞る</string>
+    <string name="next">次へ</string>
+    <string name="cancel">キャンセル</string>
+    <string name="all">全て</string>
+    <string name="ok">OK</string>
     <string name="BEGINNER">BEGINNER</string>
     <string name="BASIC">BASIC</string>
     <string name="DIFFICULT">DIFFICULT</string>
     <string name="EXPERT">EXPERT</string>
     <string name="CHALLENGE">CHALLENGE</string>
-
 </resources>

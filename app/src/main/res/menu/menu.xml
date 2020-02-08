@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+	<!-- ソートアイコン つかわない-->
+	<item
+		android:id="@+id/sort"
+		android:icon="@drawable/baseline_sort_by_alpha_white_48"
+		android:title="@string/sort"
+		android:visible="false"
+		app:showAsAction="ifRoom" />
+	<item
+		android:id="@+id/search"
+		android:icon="@drawable/baseline_filter_list_white_48"
+		android:title="@string/search"
+		app:showAsAction="ifRoom" />
+</menu>
