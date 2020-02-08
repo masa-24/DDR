@@ -32,11 +32,17 @@ class MainActivity : AppCompatActivity() {
         listView.adapter = MyAdapter(this, musicData)
     }
 
+    /**
+     * AppBarにメニューを追加する
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
+    /**
+     * メニューが押されたときの動作
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.sort -> {
@@ -69,6 +75,9 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * 難易度で絞るを押されたとき
+     */
     private fun selectDifficulty() {
         val difficultyArray = arrayOf(
             getString(R.string.all),
@@ -100,6 +109,9 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    /**
+     * レベルで絞るを押されたとき
+     */
     private fun selectLevel() {
         val levelArray = arrayOf(
             getString(R.string.all),
