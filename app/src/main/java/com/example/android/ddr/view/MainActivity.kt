@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.ddr.R
 import com.example.android.ddr.model.MusicDataBean
 import com.example.android.ddr.viewmodel.MainViewModel
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
@@ -22,9 +25,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // ツールバーをセット
         val toolbar = findViewById<Toolbar>(R.id.app_bar)
         setSupportActionBar(toolbar)
 
+        // ドロワーをセット
+        val drawer = findViewById<DrawerLayout>(R.id.drawer)
+        val actionBarToggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close)
+        drawer.addDrawerListener(actionBarToggle)
+        actionBarToggle.syncState()
+        val navigation = findViewById<NavigationView>(R.id.navigationView)
+        navigation.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.favorite -> {
+                    // TODO ここにお気に入り画面への遷移
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
+        // ViewModelをセット
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         listView = this.findViewById<ListView>(R.id.list_view)
@@ -190,6 +214,7 @@ class MyAdapter(private val context: Context, private val data: List<MusicDataBe
         viewHolder.challenge.text = data[position].difficulty.challenge
         viewHolder.imageButton.setOnClickListener {
             // TODO ふぁぼれるようにする
+            (it as ImageButton).setImageResource(R.drawable.baseline_star_black_24)
         }
         return view
     }

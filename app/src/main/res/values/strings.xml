@@ -13,4 +13,8 @@
     <string name="expert">EXPERT</string>
     <string name="challenge">CHALLENGE</string>
     <string name="please_select_level">先にレベルを選んでね</string>
+    <string name="open">開く</string>
+    <string name="close">閉じる</string>
+    <string name="menu">メニュー</string>
+    <string name="favorite">お気に入り</string>
 </resources>
