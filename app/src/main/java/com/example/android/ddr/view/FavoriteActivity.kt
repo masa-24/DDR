@@ -36,7 +36,7 @@ class FavoriteActivity : AppCompatActivity() {
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.musicList -> {
-                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    val intent = Intent(applicationContext, MusicListActivity::class.java)
                     startActivity(intent)
                     true
                 }

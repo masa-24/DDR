@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.android.ddr.MyAdapter
 import com.example.android.ddr.R
 import com.example.android.ddr.model.MusicData
-import com.example.android.ddr.viewmodel.MainViewModel
+import com.example.android.ddr.viewmodel.MusicListViewModel
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: MainViewModel
+class MusicListActivity : AppCompatActivity() {
+    lateinit var viewModel: MusicListViewModel
     lateinit var listView: ListView
     lateinit var musicData: List<MusicData>
     private val selectedDifficultyList: ArrayList<String> = ArrayList()
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // ViewModelをセット
-        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+        viewModel = ViewModelProviders.of(this)[MusicListViewModel::class.java]
 
         listView = this.findViewById<ListView>(R.id.list_view)
         musicData = viewModel.getMusicDataList(this)

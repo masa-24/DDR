@@ -13,7 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MusicListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <!-- warning消し -->

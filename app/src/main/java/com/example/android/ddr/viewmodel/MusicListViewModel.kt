@@ -8,7 +8,7 @@ import com.example.android.ddr.model.Difficulty
 import com.example.android.ddr.model.MusicData
 import java.io.*
 
-class MainViewModel : ViewModel() {
+class MusicListViewModel : ViewModel() {
     fun getMusicDataList(context: Context): List<MusicData> {
         val list: MutableList<MusicData> = ArrayList()
         try {
