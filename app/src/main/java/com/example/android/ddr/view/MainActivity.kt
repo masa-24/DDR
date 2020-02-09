@@ -77,31 +77,37 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * 難易度で絞るを押されたとき
+     * レベルで絞ったリストに難易度でフィルタする
+     * 何も選択しないと何もしない
      */
     private fun selectDifficulty() {
         val difficultyArray = arrayOf(
-            getString(R.string.all),
-            getString(R.string.BEGINNER),
-            getString(R.string.BASIC),
-            getString(R.string.DIFFICULT),
-            getString(R.string.EXPERT),
-            getString(R.string.CHALLENGE)
+            getString(R.string.beginner),
+            getString(R.string.basic),
+            getString(R.string.difficult),
+            getString(R.string.expert),
+            getString(R.string.challenge)
         )
-        val checkedItem = booleanArrayOf(false, false, false, false, false, false)
+        val checkedItem = booleanArrayOf(false, false, false, false, false)
         AlertDialog.Builder(this)
             .setTitle(R.string.select_difficulty)
             .setMultiChoiceItems(difficultyArray, checkedItem){ dialog, which, check ->
                 checkedItem[which] = check
             }
             .setPositiveButton(R.string.next){ dialog, which ->
-                selectedDifficultyList.clear()
-                for(i in difficultyArray.indices) {
-                    if(checkedItem[i]) {
-                        selectedDifficultyList.add(difficultyArray[i])
+                if(selectedLevelList.size > 0) {
+                    selectedDifficultyList.clear()
+                    for (i in difficultyArray.indices) {
+                        if (checkedItem[i]) {
+                            selectedDifficultyList.add(difficultyArray[i])
+                        }
                     }
+                    val narrowDownList =
+                        viewModel.narrowDownDifficulty(this, musicData, selectedDifficultyList, selectedLevelList)
+                    listView.adapter = MyAdapter(this, narrowDownList)
+                } else {
+                    Toast.makeText(applicationContext, getString(R.string.please_select_level), Toast.LENGTH_LONG).show()
                 }
-                musicData = viewModel.narrowDownDifficulty(this, musicData, selectedDifficultyList, selectedLevelList)
-                listView.adapter = MyAdapter(this, musicData)
             }
             .setNegativeButton(R.string.cancel){ dialog, which ->
                 dialog.cancel()
@@ -111,10 +117,11 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * レベルで絞るを押されたとき
+     * 選択されたレベルを含む楽曲リストのみ表示する
+     * 何も選択しないと全部表示する
      */
     private fun selectLevel() {
         val levelArray = arrayOf(
-            getString(R.string.all),
             "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "10",
             "11", "12", "13", "14", "15",
@@ -123,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             false, false, false, false, false,
             false, false, false, false, false,
             false, false, false, false, false,
-            false, false, false, false, false)
+            false, false, false, false)
             AlertDialog.Builder(this)
             .setMultiChoiceItems(levelArray, checkedItem){ dialog, which, check ->
                 checkedItem[which] = check
@@ -135,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                         selectedLevelList.add(levelArray[i])
                     }
                 }
-                musicData = viewModel.narrowDownLevel(this, musicData, selectedLevelList)
+                musicData = viewModel.narrowDownLevel(this, selectedLevelList)
                 listView.adapter = MyAdapter(this, musicData)
             }
             .setNegativeButton(R.string.cancel){ dialog, which ->

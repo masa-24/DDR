@@ -31,12 +31,13 @@ class MainViewModel : ViewModel() {
         return list
     }
 
-    fun narrowDownLevel(context: Context, list: List<MusicDataBean>, level: List<String>?): List<MusicDataBean> {
-        if(level == null) {
+    /**
+     * レベルで絞る
+     */
+    fun narrowDownLevel(context: Context, level: List<String>): List<MusicDataBean> {
+        val list = getMusicDataList(context)
+        if(level.isEmpty()) {
             return list
-        }
-        if(level.contains(context.getString(R.string.all))) {
-            return getMusicDataList(context)
         }
         return list.filter {
             level.contains(it.difficulty.beginner) ||
@@ -46,27 +47,24 @@ class MainViewModel : ViewModel() {
                     level.contains(it.difficulty.challenge) }
     }
 
-    fun narrowDownDifficulty(context: Context, list: List<MusicDataBean>, difficulty: List<String>?, level: List<String>?): List<MusicDataBean>  {
+    fun narrowDownDifficulty(context: Context, list: List<MusicDataBean>, difficulty: List<String>, level: List<String>): List<MusicDataBean>  {
         val narrowDownList: MutableList<MusicDataBean> = ArrayList()
-        if(difficulty == null || level == null) {
+        if(difficulty.isEmpty() || level.isEmpty()) {
             return list
         }
-        if(difficulty.contains(context.getString(R.string.all))) {
-            return getMusicDataList(context)
-        }
-        if(difficulty.contains(context.getString(R.string.BEGINNER))) {
+        if(difficulty.contains(context.getString(R.string.beginner))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.beginner) })
         }
-        if(difficulty.contains(context.getString(R.string.BASIC))) {
+        if(difficulty.contains(context.getString(R.string.basic))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.basic) })
         }
-        if(difficulty.contains(context.getString(R.string.DIFFICULT))) {
+        if(difficulty.contains(context.getString(R.string.difficult))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.difficult) })
         }
-        if(difficulty.contains(context.getString(R.string.EXPERT))) {
+        if(difficulty.contains(context.getString(R.string.expert))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.expert) })
         }
-        if(difficulty.contains(context.getString(R.string.CHALLENGE))) {
+        if(difficulty.contains(context.getString(R.string.challenge))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.challenge) })
         }
         return narrowDownList

@@ -6,11 +6,11 @@
     <string name="select_level">レベルで絞る</string>
     <string name="next">次へ</string>
     <string name="cancel">キャンセル</string>
-    <string name="all">全て</string>
     <string name="ok">OK</string>
-    <string name="BEGINNER">BEGINNER</string>
-    <string name="BASIC">BASIC</string>
-    <string name="DIFFICULT">DIFFICULT</string>
-    <string name="EXPERT">EXPERT</string>
-    <string name="CHALLENGE">CHALLENGE</string>
+    <string name="beginner">BEGINNER</string>
+    <string name="basic">BASIC</string>
+    <string name="difficult">DIFFICULT</string>
+    <string name="expert">EXPERT</string>
+    <string name="challenge">CHALLENGE</string>
+    <string name="please_select_level">先にレベルを選んでね</string>
 </resources>
