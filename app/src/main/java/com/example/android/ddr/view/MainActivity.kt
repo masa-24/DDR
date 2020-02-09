@@ -11,14 +11,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.ddr.R
-import com.example.android.ddr.model.MusicDataBean
+import com.example.android.ddr.model.MusicData
 import com.example.android.ddr.viewmodel.MainViewModel
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
     lateinit var listView: ListView
-    lateinit var musicData: List<MusicDataBean>
+    lateinit var musicData: List<MusicData>
     private val selectedDifficultyList: ArrayList<String> = ArrayList()
     private val selectedLevelList: ArrayList<String> = ArrayList()
 
@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class MyAdapter(private val context: Context, private val data: List<MusicDataBean>) : BaseAdapter() {
+class MyAdapter(private val context: Context, private val data: List<MusicData>) : BaseAdapter() {
     data class ViewHolder(val musicName: TextView,
                           val beginner: TextView,
                           val basic: TextView,

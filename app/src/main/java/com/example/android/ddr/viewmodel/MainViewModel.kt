@@ -5,12 +5,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.android.ddr.R
 import com.example.android.ddr.model.Difficulty
-import com.example.android.ddr.model.MusicDataBean
+import com.example.android.ddr.model.MusicData
 import java.io.*
 
 class MainViewModel : ViewModel() {
-    fun getMusicDataList(context: Context): List<MusicDataBean> {
-        val list: MutableList<MusicDataBean> = ArrayList()
+    fun getMusicDataList(context: Context): List<MusicData> {
+        val list: MutableList<MusicData> = ArrayList()
         try {
             val inputStream: InputStream = context.assets.open("file")
             val inputStreamReader = InputStreamReader(inputStream)
@@ -19,7 +19,7 @@ class MainViewModel : ViewModel() {
             while (bufferedReader.readLine().also({ receiveString = it }) != null) {
                 val tempList = receiveString?.split("_")
                 tempList?.let {
-                    list.add(MusicDataBean(it[0], Difficulty(it[1], it[2], it[3], it[4], it[5])))
+                    list.add(MusicData(it[0], Difficulty(it[1], it[2], it[3], it[4], it[5])))
                 }
             }
             inputStream.close()
@@ -37,7 +37,7 @@ class MainViewModel : ViewModel() {
      * @param level レベル指定
      * @return レベルで絞り込まれた楽曲リスト
      */
-    fun narrowDownLevel(context: Context, level: List<String>): List<MusicDataBean> {
+    fun narrowDownLevel(context: Context, level: List<String>): List<MusicData> {
         val list = getMusicDataList(context)
         if(level.isEmpty()) {
             return list
@@ -58,8 +58,8 @@ class MainViewModel : ViewModel() {
      * @param level レベル指定
      * @return 難易度で絞り込まれた楽曲リスト
      */
-    fun narrowDownDifficulty(context: Context, list: List<MusicDataBean>, difficulty: List<String>, level: List<String>): List<MusicDataBean>  {
-        val narrowDownList: MutableList<MusicDataBean> = ArrayList()
+    fun narrowDownDifficulty(context: Context, list: List<MusicData>, difficulty: List<String>, level: List<String>): List<MusicData>  {
+        val narrowDownList: MutableList<MusicData> = ArrayList()
         if(difficulty.isEmpty() || level.isEmpty()) {
             return list
         }

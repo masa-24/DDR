@@ -1,6 +1,6 @@
 package com.example.android.ddr.model
 
-data class MusicDataBean(val musicName: String,
+data class MusicData(val musicName: String,
                          val difficulty: Difficulty)
 
 data class Difficulty(val beginner: String,
