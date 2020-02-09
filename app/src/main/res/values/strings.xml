@@ -17,4 +17,5 @@
     <string name="close">閉じる</string>
     <string name="menu">メニュー</string>
     <string name="favorite">お気に入り</string>
+    <string name="music_list">楽曲リスト</string>
 </resources>
