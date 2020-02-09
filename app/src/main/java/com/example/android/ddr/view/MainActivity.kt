@@ -1,6 +1,6 @@
 package com.example.android.ddr.view
 
-import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.ddr.MyAdapter
 import com.example.android.ddr.R
 import com.example.android.ddr.model.MusicData
 import com.example.android.ddr.viewmodel.MainViewModel
@@ -39,7 +40,8 @@ class MainActivity : AppCompatActivity() {
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.favorite -> {
-                    // TODO ここにお気に入り画面への遷移
+                    val intent = Intent(application, FavoriteActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> {
@@ -172,62 +174,5 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton(R.string.cancel){ dialog, which ->
             }
             .show()
-    }
-}
-
-class MyAdapter(private val context: Context, private val data: List<MusicData>) : BaseAdapter() {
-    data class ViewHolder(val musicName: TextView,
-                          val beginner: TextView,
-                          val basic: TextView,
-                          val difficult: TextView,
-                          val expert: TextView,
-                          val challenge: TextView,
-                          val imageButton: ImageButton)
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View
-        val viewHolder: ViewHolder
-
-        if(convertView == null) {
-            val layoutInflater = LayoutInflater.from(context)
-            view = layoutInflater.inflate(R.layout.list_item, null)
-            viewHolder = ViewHolder(
-                view.findViewById(R.id.text),
-                view.findViewById(R.id.beginner),
-                view.findViewById(R.id.basic),
-                view.findViewById(R.id.difficult),
-                view.findViewById(R.id.expert),
-                view.findViewById(R.id.challenge),
-                view.findViewById(R.id.button)
-            )
-            view.tag = viewHolder
-        } else {
-            view = convertView
-            viewHolder = view.tag as ViewHolder
-        }
-
-        viewHolder.musicName.text = data[position].musicName
-        viewHolder.beginner.text = data[position].difficulty.beginner
-        viewHolder.basic.text = data[position].difficulty.basic
-        viewHolder.difficult.text = data[position].difficulty.difficult
-        viewHolder.expert.text = data[position].difficulty.expert
-        viewHolder.challenge.text = data[position].difficulty.challenge
-        viewHolder.imageButton.setOnClickListener {
-            // TODO ふぁぼれるようにする
-            (it as ImageButton).setImageResource(R.drawable.baseline_star_black_24)
-        }
-        return view
-    }
-
-    override fun getItemId(p0: Int): Long {
-        return 0
-    }
-
-    override fun getItem(position: Int): Any? {
-        return data[position]
-    }
-
-    override fun getCount(): Int {
-        return data.size
     }
 }
