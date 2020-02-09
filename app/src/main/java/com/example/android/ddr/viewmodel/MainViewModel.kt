@@ -33,6 +33,9 @@ class MainViewModel : ViewModel() {
 
     /**
      * レベルで絞る
+     * @param context
+     * @param level レベル指定
+     * @return レベルで絞り込まれた楽曲リスト
      */
     fun narrowDownLevel(context: Context, level: List<String>): List<MusicDataBean> {
         val list = getMusicDataList(context)
@@ -47,6 +50,14 @@ class MainViewModel : ViewModel() {
                     level.contains(it.difficulty.challenge) }
     }
 
+    /**
+     * 難易度で絞る
+     * @param context
+     * @param list 楽曲リスト
+     * @param difficulty 難易度指定
+     * @param level レベル指定
+     * @return 難易度で絞り込まれた楽曲リスト
+     */
     fun narrowDownDifficulty(context: Context, list: List<MusicDataBean>, difficulty: List<String>, level: List<String>): List<MusicDataBean>  {
         val narrowDownList: MutableList<MusicDataBean> = ArrayList()
         if(difficulty.isEmpty() || level.isEmpty()) {
@@ -67,6 +78,8 @@ class MainViewModel : ViewModel() {
         if(difficulty.contains(context.getString(R.string.challenge))) {
             narrowDownList.addAll(list.filter { level.contains(it.difficulty.challenge) })
         }
+        // expertとchallengeみたいに難易度が同じことがあるかもしれないので一応重複削除
+        narrowDownList.distinct()
         return narrowDownList
     }
 
